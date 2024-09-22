@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divija Joshi - Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* CSS Styles */
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>Divija Joshi</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h2 class="animated">Hi, I'm Divija Joshi</h2>
+      <p class="animated">An Artificial Intelligence Engineering Student</p>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>I am a passionate AI engineering student currently in third year. I am pursuing bachelor's degree BTech in Artificial Intelligence in G.H.Raisoni College Of Engineering, Nagpur. I love exploring my creativity in web development as well as problem solving. I enjoy tackling complex problems and finding solutions to them. I am familiar with programming languages such as Python, C, C++ and text based languages such as html, css, javascript.</p>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="project-card">
+        <h3>Project 1</h3>
+        <p>Description of Project 1</p>
+      </div>
+      <div class="project-card">
+        <h3>Project 2</h3>
+        <p>Description of Project 2</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <form id="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Divija Joshi. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth',
+        });
+      });
+    });
+
+    // Form submission
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Perform form validation and submission here
+      // You can use AJAX to send the form data to a server-side script
+    });
+
+    // Text animation
+    const animatedElements = document.querySelectorAll('.animated');
+
+    function animateElements() {
+      animatedElements.forEach((element) => {
+        if (isElementInViewport(element)) {
+          element.classList.add('fadeInUp');
+        }
+      });
+    }
+
+    function isElementInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    }
+
+    window.addEventListener('scroll', animateElements);
+    window.addEventListener('load', animateElements);
+  </script>
+</body>
+
+</html>

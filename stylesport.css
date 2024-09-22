@@ -1,0 +1,182 @@
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+    background-color: #a18bb4;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    list-style: none;
+    margin: 0 23px;
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+
+}
+
+nav ul li a:hover {
+    color: #6f5d86;
+    font-size: 1.3rem;
+
+}
+
+.left {
+    font-size: 1.5rem;
+}
+
+.first {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0;
+}
+
+.leftsection {
+    margin-top: 10rem;
+    width: 35%;
+    height: 35%;
+    font-size: 2rem;
+}
+
+.rightsection #robo {
+
+    position: absolute;
+    top: 55%;
+    left: 80%;
+    width: auto;
+    height: 95%;
+    transform: translate(-50%, -50%);
+}
+
+#robo:hover {
+    height: 115%;
+    width: auto;
+
+}
+
+.name {
+    color: #baa0e8;
+
+}
+
+#element {
+    color: #baa0e8;
+}
+
+.second,
+.third,
+.fourth {
+
+    background-color: black;
+    max-width: 80vw;
+    margin: 150px;
+    font-style: inherit;
+    border: white;
+    border-style: double;
+    border-width: 1rem;
+    padding: 0.5rem;
+    ;
+
+}
+
+.second #About:hover {
+    font-size: 2rem;
+    color: #baa0e8;
+}
+
+.third #Skills:hover {
+    font-size: 2rem;
+    color: #baa0e8;
+}
+
+.third ul li {
+    list-style: none;
+    margin: 0 23px;
+
+}
+
+.fourth #Projects:hover {
+    font-size: 2rem;
+    color: #baa0e8;
+}
+
+.fourth ul li {
+    list-style: none;
+    margin: 0 23px;
+
+}
+
+.worklist {
+    display: grid;
+   
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+
+.Work {
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.Work img {
+    margin: auto;
+    width: 50%;
+    border-radius: 10px;
+}
+.layer {
+width: 100%;
+height: 100%;
+background: linear-gradient(rgba(0, 0, 0, 0.6), #800080);
+border-radius: 10px;
+position: absolute;
+left: 0;
+bottom: 0;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+padding: 0px;
+text-align: center;
+font-size: 14px;
+}
+.layer h3{
+font-weight: 500;
+margin-bottom: 20px;
+}
+.layer a{
+margin-top: 20px;
+color: #800080;
+text-decoration: none;
+font-size: 18px;
+line-height: 60px;
+background:#fff;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+text-align: center;
+}
+
+</style>

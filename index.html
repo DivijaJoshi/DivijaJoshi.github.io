@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="stylesport.css">
+
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="left" id="Home">Divija's Portfolio</div>
+            <div class="right">
+                <ul>
+                    <li><a href="#Home">Home</a></li>
+                    <li><a href="#About">About</a></li>
+                    <li><a href="#Skills">Skills</a></li>
+                    <li><a href="#Projects">Projects</a></li>
+                    <li><a href="#Contact">Contact Me</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="first">
+            <div class="leftsection">Hi, I'm<span class="name"> Divija.</span><br>
+                I am a passionate <br><span id="element"></span></div>
+            <div class="rightsection"><img id="robo" src="robo.png"></div>
+        </section><br><br><br><br><br><br><br><br>
+        <hr>
+        <section class="second">
+            <br>
+
+            <h1 id="About">
+                <center>About Me</center>
+            </h1><br>
+            <h4>I am a passionate AI engineering student currently in third year. I am pursuing bachelor's degree
+                i.e.BTech G.H.Raisoni College Of Engineering, Nagpur. I love exploring my creativity
+                in web development as well as problem solving. I enjoy tackling complex problems and finding solutions
+                to them. I am familiar with programming languages such as Python, C, C++ and text based languages such
+                as html, css, javascript.</h4>
+
+        </section>
+        <section class="third">
+            <h1 id="Skills">
+                <center>Skills</center>        
+                </h1><br>
+            
+                <center><h4>
+                    <ul>
+                        <li>Problem Solving</li>
+                        <li>Creativity</li>
+                        <li>Attention to detail</li>
+                        <li>Team work</li>
+                        <li>Critical thinking</li>
+                    </ul>
+                </h4>
+                </center>
+            
+        </section>
+        <section class="fourth">
+            <h1 id="Projects">
+                <center>Projects</center>
+            </h1><br>
+            <ul>
+                <h2>
+                    <li>1] Docbot</li>
+                </h2>
+                <h4>Docbot is a chatbot that guides the users throughout the process of accessing or creating important
+                    documents online such as Aadhar card, Pan card, Ration card. This chatbot is made by combining ML
+                    and AI using python. Docbot is able to answer queries of users efficiently and explain steps to
+                    create,renew or verify documents, thus simplifying the whole process.</h4><br>
+                <h2>
+                    <li>2] Portfolio Website</li>
+                </h2>
+                <h4> Created a Portfolio Website with user friendly UI using html,css and javascript. </h4><br>
+                <h2>
+                    <li>2] Netflix clone</li>
+                </h2>
+                <h4> Created a Netflix landing page using html,css,javascript. </h4>
+
+            </ul>
+        </section>
+        <section>
+            <div id="Projects" class="container">
+               <div class="worklist">
+                    <div class="Work">
+                        <img src="chatbot.png">
+                        <div class="layer">
+                            <h3>A chatbot: Docbot</h3>
+                            
+                            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="Work">
+                        <img src="portfolio pic.jpg">
+                        <div class="layer">
+                            <h3>Portfolio Website</h3>
+                            
+                            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="Work">
+                        <img src="netflixclone.jpg">
+                        <div class="layer">
+                            <h3>Netflix Landing Page Clone</h3>
+                           
+                            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </section>
+
+    </main>
+    <script src="https://kit.fontawesome.com/521104c16f.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <!-- Setup and start animation! -->
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['Developer ', 'AI Engineer', 'and a Writer.'],
+            typeSpeed: 70, loop: true,
+        });
+    </script>
+</body>
+
+</html>

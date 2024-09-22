@@ -1,0 +1,267 @@
+/* Font Styles */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Colors */
+  :root {
+    --primary-color: #ffacb7;
+    --secondary-color: #ffb6c1;
+    --accent-color: #b5e6d8;
+    --text-color: #333;
+    --bg-color: #f1f1f1;
+  }
+  
+  .hero .animated {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease-in-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  header {
+    background-color: var(--primary-color);
+    padding: 20px;
+    color: white;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .nav-links li {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+  
+  .nav-links a:hover {
+    opacity: 0.8;
+  }
+  
+  section {
+    padding: 80px 0;
+    text-align: center;
+    background-color: var(--bg-color);
+  }
+  
+  section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--text-color);
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .project-card {
+    background-color: var(--secondary-color);
+    padding: 40px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .project-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+  }
+  
+  .project-card p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+  }
+  
+  .contact {
+    background-color: var(--accent-color);
+    padding: 80px 0;
+    text-align: center;
+  }
+  
+  .container input,
+  .container textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .container textarea {
+    height: 120px;
+  }
+  
+  .container button {
+    padding: 15px 40px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+  }
+  
+  .container button:hover {
+    background-color: var(--accent-color);
+  }
+  
+  footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Additional Styling */
+  
+  .hero {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+  }
+  
+  .container form input,
+  .container form textarea {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+  }
+  
+  .container form button {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .container form button:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  /* Additional Color Styles */
+  
+  .about {
+    background-color: var(--accent-color);
+  }
+  
+  .projects {
+    background-color: var(--bg-color);
+  }
+  
+  .project-card {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .contact {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  /* Additional Features */
+  
+  .project-card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.5;
+    z-index: -1;
+  }
+  
+  footer p {
+    font-size: 1rem;
+  }
+  
+  /* Additional Font Styles */
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+  }
+  
+  .hero h2, .about h2, .projects h2, .contact h2 {
+    font-weight: 700;
+  }
+  
+  .container form input,
+  .container form textarea,
+  .container form button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Additional Animations */
+  
+  .animated {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease-in-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

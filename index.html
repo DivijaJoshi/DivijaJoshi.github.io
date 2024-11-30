@@ -399,6 +399,140 @@
   max-width: 100%;
   box-sizing: border-box;
 }
+.theme-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            width: 60px;
+            height: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .theme-toggle-circle {
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(45deg, #2575fc 0%, #ecec40 100%);
+            border-radius: 50%;
+            position: absolute;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 14px;
+        }
+        
+        .theme-toggle-circle.light {
+            transform: translateX(0);
+            background: linear-gradient(45deg, #f6d365 0%, #fda085 100%);
+        }
+        
+        .theme-toggle-circle.dark {
+            transform: translateX(30px);
+            background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
+        }
+        
+        /* Light Mode Styles */
+        body.light-mode {
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        
+        body.light-mode .portfolio-container {
+            background-color: transparent;
+        }
+        
+        body.light-mode .section {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        body.light-mode .portfolio-header {
+            color: #2c3e50;
+        }
+        
+        body.light-mode .portfolio-subheader {
+            color: #34495e;
+        }
+        
+        body.light-mode .section h3 {
+            color: #2c3e50;
+            border-bottom-color: #3498db;
+        }
+        
+        body.light-mode .section p {
+            color: #2c3e50;
+        }
+        
+        body.light-mode .skill-name {
+            color: #2c3e50;
+        }
+        
+        body.light-mode .skills-grid {
+            background: transparent;
+        }
+        
+        body.light-mode .skill-item {
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        body.light-mode .progress-container {
+            background: rgba(0,0,0,0.1);
+        }
+        
+        body.light-mode .progress-bar {
+            background: linear-gradient(45deg, #3498db 0%, #2ecc71 100%);
+        }
+        
+        body.light-mode .social-icons a {
+            color: #2c3e50;
+            transition: color 0.3s ease;
+        }
+        
+        body.light-mode .social-icons a:hover {
+            color: #3498db;
+        }
+        
+        body.light-mode .project-item {
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        body.light-mode .project-title {
+            color: #2c3e50;
+        }
+        
+        body.light-mode .project-description {
+            color: #34495e;
+        }
+        
+        body.light-mode .form-group input,
+        body.light-mode .form-group textarea {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.2);
+            color: #2c3e50;
+        }
+        
+        body.light-mode .contact-section {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(46, 204, 113, 0.1) 100%);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-mode .contact-info,
+        body.light-mode .contact-form {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -413,7 +547,11 @@
             Creating AI-driven solutions for a better tomorrow.
         </div>
     </div>
-
+    <div class="theme-toggle" id="theme-toggle">
+        <div class="theme-toggle-circle" id="theme-toggle-circle">
+            🌙
+        </div>
+    </div>
     <div class="wrapper" id="portfolio-page">
         <div class="portfolio-container">
             <img src="./profile photo3.jpeg" alt="Divija Joshi" class="profile-image">
@@ -641,6 +779,42 @@
             
             // Reset form
             event.target.reset();
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleCircle = document.getElementById('theme-toggle-circle');
+            
+            // Check for saved theme preference or default to dark mode
+            const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+            
+            function applyTheme(theme) {
+                if (theme === 'light') {
+                    document.body.classList.add('light-mode');
+                    themeToggleCircle.textContent = '☀️';
+                    themeToggleCircle.classList.remove('dark');
+                    themeToggleCircle.classList.add('light');
+                } else {
+                    document.body.classList.remove('light-mode');
+                    themeToggleCircle.textContent = '🌙';
+                    themeToggleCircle.classList.remove('light');
+                    themeToggleCircle.classList.add('dark');
+                }
+            }
+            
+            // Apply saved theme on page load
+            applyTheme(savedTheme);
+            
+            // Toggle theme on click
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                // Save theme preference
+                localStorage.setItem('portfolio-theme', newTheme);
+                
+                // Apply new theme
+                applyTheme(newTheme);
+            });
         });
     </script>
 </body>

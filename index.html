@@ -1,138 +1,642 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divija Joshi</title>
+    <title>Divija Joshi's Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ledger&family=Xanh+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="stylesport.css">
+   <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Xanh Mono', monospace;
+            background-color: #010003;
+            color: #eaeaea;
+        }
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #080500;
+            text-align: center;
+            animation: fade-in 1s ease-in-out;
+        }
+        @keyframes fade-in {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .chibi-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .chibi-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .loader {
+            width: 120px;
+            height: 20px;
+            background: linear-gradient(rgb(7, 7, 228) 0 0) 0/0% no-repeat #ddd;
+            animation: l1 2s infinite linear;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        @keyframes l1 {
+            100% { background-size: 100%; }
+        }
+        .percentage {
+            font-size: 18px;
+            color: #f9f9f9;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .welcome-text {
+            font-size: 24px;
+            color: #f4efef;
+            margin-top: 10px;
+            line-height: 1.5;
+            animation: fade-in 1s ease-in-out 0.5s;
+            animation-fill-mode: both;
+        }
+        .wrapper {
+            display: none;
+            position: relative;
+        }
+        .portfolio-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            position: relative;
+            animation: slide-up 0.8s ease-in-out;
+        }
+        @keyframes slide-up {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .profile-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 30px;
+            z-index: 10;
+            animation: fade-in 1s ease-in-out;
+        }
+        .portfolio-header {
+            text-align: center;
+            font-size: 54px;
+            margin-bottom: 10px;
+            color: #fff;
+            animation: fade-in 1s ease-in-out 0.3s;
+            animation-fill-mode: both;
+        }
+        .portfolio-subheader {
+            text-align: center;
+            font-size: 28px;
+            color: #7f7f7f;
+            margin-bottom: 40px;
+            animation: fade-in 1s ease-in-out 0.5s;
+            animation-fill-mode: both;
+        }
+        .section {
+            background: rgba(199, 195, 195, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            animation: fade-in 0.8s ease-in-out;
+        }
+        .section h3 {
+            font-size: 32px;
+            color: #fff;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #7f7f7f;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .section p {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #d0d0d0;
+        }
+        .about-content {
+            text-align: left;
+        }
+        
+        /* Skills Section Styles */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(199, 195, 195, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: scale(1.05);
+        }
+        .skill-name {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #ffffff;
+        }
+        .progress-container {
+            width: 100%;
+            height: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #2575fc 0%, #ecec40 100%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: width 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .progress-text {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .social-icons a {
+            color: #ffffff;
+            font-size: 32px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #2575fc;
+        }
+        .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px 0;
+        }
+        .project-item {
+            background: rgba(199, 195, 195, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .project-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .project-title {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        .project-description {
+            font-size: 18px;
+            color: #d0d0d0;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        .project-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(37, 117, 252, 0.1);
+        }
+        .project-link-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #7f7f7f;
+            opacity: 0;
+            transition: opacity 0.3s ease, color 0.3s ease;
+        }
+        .project-item:hover .project-link-indicator {
+            opacity: 1;
+            color: #2575fc;
+        }
+        .project-item:hover .project-title {
+            color: #2575fc;
+        }
+        .contact-section {
+        background: linear-gradient(135deg, rgba(37, 117, 252, 0.1) 0%, rgba(236, 236, 64, 0.1) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .contact-wrapper {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+    }
+    .contact-info {
+        flex: 1;
+        background: rgba(199, 195, 195, 0.05);
+        padding: 30px;
+        border-radius: 15px;
+    }
+    .contact-title {
+        font-size: 28px;
+        color: #ffffff;
+        margin-bottom: 15px;
+    }
+    .contact-description {
+        color: #d0d0d0;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .direct-contact {
+        margin-top: 20px;
+    }
+    .direct-contact p {
+        color: #ffffff;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+    }
+    .direct-contact i {
+        margin-right: 15px;
+        color: #2575fc;
+        font-size: 20px;
+    }
+    .contact-form {
+        flex: 1;
+        background: rgba(199, 195, 195, 0.05);
+        padding: 30px;
+        border-radius: 15px;
+    }
+    .input-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .input-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #7f7f7f;
+        transition: color 0.3s ease;
+    }
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 15px 15px 15px 45px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        color: #eaeaea;
+        font-family: 'Xanh Mono', monospace;
+        transition: all 0.3s ease;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #2575fc;
+    }
+    .form-group input:focus + .input-icon
+    .form-group textarea:focus + .input-icon {
+        color: #2575fc;
+    }
+    .submit-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        background: linear-gradient(45deg, #2575fc 0%, #ecec40 100%);
+        color: #ffffff;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        font-size: 18px;
+    }
+    .submit-btn:hover {
+        transform: translateY(-5px);
+    }
+    .message {
+        text-align: center;
+        margin-top: 15px;
+        display: none;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    .success-message {
+        color: #4CAF50;
+        background: rgba(76, 175, 80, 0.1);
+        border: 1px solid #4CAF50;
+    }
+    .error-message {
+        color: #f44336;
+        background: rgba(244, 67, 54, 0.1);
+        border: 1px solid #f44336;
+    }
+    .message i {
+        margin-right: 10px;
+    }
+    @media (max-width: 768px) {
+        .contact-wrapper {
+            flex-direction: column;
+        }
+    }
+    .form-group {
+  margin-bottom: 20px;
+}
 
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+    </style>
 </head>
-
 <body>
+    <div class="loading-container" id="loading-page">
+        <div class="chibi-circle">
+            <img src="./loader blue.jpeg" alt="Chibi Character">
+        </div>
+        <div class="loader" id="loader"></div>
+        <div class="percentage" id="percentage">0%</div>
+        <div class="welcome-text">
+            Welcome to Divija's Portfolio!<br>
+            Creating AI-driven solutions for a better tomorrow.
+        </div>
+    </div>
 
-    <header>
-        <nav>
-            <div class="left" id="Home">Divija's Portfolio</div>
-            <div class="right">
-                <ul>
-                    <li><a href="#Home">Home</a></li>
-                    <li><a href="#About">About</a></li>
-                    <li><a href="#Skills">Skills</a></li>
-                    <li><a href="#Projects">Projects</a></li>
-                    <li><a href="#Contact">Contact Me</a></li>
-
-                </ul>
+    <div class="wrapper" id="portfolio-page">
+        <div class="portfolio-container">
+            <img src="./profile photo3.jpeg" alt="Divija Joshi" class="profile-image">
+            <h1 class="portfolio-header">Divija Joshi</h1>
+            <h3 class="portfolio-subheader">Solving Real Life Problems With Code</h3>
+                                
+            <!-- New social icons section -->
+            <div class="social-icons">
+                <a href="https://github.com/divijajoshi" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/divija-joshi/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="Divija Joshi Resume Main.pdf" target="_blank"><i class="fas fa-file-download"></i></a>
             </div>
-        </nav>
-    </header>
-    <main>
-        <section class="first">
-            <div class="leftsection">Hi, I'm<span class="name"> Divija.</span><br>
-                I am a passionate <br><span id="element"></span></div>
-            <div class="rightsection"><img id="robo" src="robo.png"></div>
-        </section><br><br><br><br><br><br><br><br>
-        <hr>
-        <section class="second">
-            <br>
 
-            <h1 id="About">
-                <center>About Me</center>
-            </h1><br>
-            <h4>I am a passionate AI engineering student currently in third year. I am pursuing bachelor's degree
-                i.e.BTech G.H.Raisoni College Of Engineering, Nagpur. I love exploring my creativity
-                in web development as well as problem solving. I enjoy tackling complex problems and finding solutions
-                to them. I am familiar with programming languages such as Python, C, C++ and text based languages such
-                as html, css, javascript.</h4>
-
-        </section>
-        <section class="third">
-            <h1 id="Skills">
-                <center>Skills</center>        
-                </h1><br>
+            <div class="section">
+                <h3>About Me</h3>
+                <div class="about-content">
+                    <p>Hello! I'm Divija Joshi, a passionate Computer Science Engineer specializing in Artificial Intelligence, committed to crafting impactful solutions through technology. With expertise in programming, machine learning, and data analysis, I thrive in collaborative environments where I can tackle complex problems and drive innovation. My goal is to stay at the forefront of emerging technologies, delivering value to organizations while contributing to advancements in AI and beyond.</p>
+                </div>
+            </div>
             
-                <center><h4>
-                    <ul>
-                        <li>Problem Solving</li>
-                        <li>Creativity</li>
-                        <li>Attention to detail</li>
-                        <li>Team work</li>
-                        <li>Critical thinking</li>
-                    </ul>
-                </h4>
-                </center>
-            
-        </section>
-        <section class="fourth">
-            <h1 id="Projects">
-                <center>Projects</center>
-            </h1><br>
-            <ul>
-                <h2>
-                    <li>1] Docbot</li>
-                </h2>
-                <h4>Docbot is a chatbot that guides the users throughout the process of accessing or creating important
-                    documents online such as Aadhar card, Pan card, Ration card. This chatbot is made by combining ML
-                    and AI using python. Docbot is able to answer queries of users efficiently and explain steps to
-                    create,renew or verify documents, thus simplifying the whole process.</h4><br>
-                <h2>
-                    <li>2] Divija Joshi</li>
-                </h2>
-                <h4> Created a Portfolio Website with user friendly UI using html,css and javascript. </h4><br>
-                <h2>
-                    <li>2] Netflix clone</li>
-                </h2>
-                <h4> Created a Netflix landing page using html,css,javascript. </h4>
-
-            </ul>
-        </section>
-        <section>
-            <div id="Projects" class="container">
-               <div class="worklist">
-                    <div class="Work">
-                        <img src="chatbot.png">
-                        <div class="layer">
-                            <h3>A chatbot: Docbot</h3>
-                            
-                            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                        </div>
+            <div class="section">
+                <h3>Projects</h3>
+                <div class="projects-grid">
+                    <div class="project-item">
+                        <a href="https://huggingface.co/spaces/divija05/predictive_maintenance_equipment" target="_blank" class="project-link">
+                            <div class="project-content">
+                                <h4 class="project-title">Predictive Maintenance for Manufacturing Equipment</h4>
+                                <p class="project-description">A machine learning model designed to predict equipment failures and optimize maintenance schedules for manufacturing systems.</p>
+                                <div class="project-link-indicator">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="Work">
-                        <img src="portfolio pic.jpg">
-                        <div class="layer">
-                            <h3>Portfolio Website</h3>
-                            
-                            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                        </div>
+                    <div class="project-item">
+                        <a href="https://asthma-attack-risk-prediction-app.streamlit.app/" target="_blank" class="project-link">
+                            <div class="project-content">
+                                <h4 class="project-title">Asthma Attack Risk Prediction</h4>
+                                <p class="project-description">A smart AI-driven health management platform that predicts asthma attack risks using advanced machine learning algorithms.</p>
+                                <div class="project-link-indicator">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="Work">
-                        <img src="netflixclone.jpg">
-                        <div class="layer">
-                            <h3>Netflix Landing Page Clone</h3>
-                           
-                            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    <div class="project-item">
+                        <a href="https://github.com/DivijaJoshi/Docubot" target="_blank" class="project-link">
+                            <div class="project-content">
+                                <h4 class="project-title">DocuBot</h4>
+                                <p class="project-description">An AI chatbot for intelligent document renewal assistance, streamlining user interactions through automated processes.</p>
+                                <div class="project-link-indicator">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-content">
+                            <h4 class="project-title">GenAI</h4>
+                            <p class="project-description">Text-to-image generation project leveraging Generative Adversarial Networks (GANs) and advanced Natural Language Processing techniques.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            
-        </section>
 
-    </main>
-    <script src="https://kit.fontawesome.com/521104c16f.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <!-- Setup and start animation! -->
+            <div class="section">
+                <h3>Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-name">Python</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%" data-percent="85"></div>
+                            <div class="progress-text">85%</div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Machine Learning</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%" data-percent="80"></div>
+                            <div class="progress-text">80%</div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">AI & Deep Learning</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%" data-percent="60"></div>
+                            <div class="progress-text">60%</div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Data Science</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%" data-percent="80"></div>
+                            <div class="progress-text">80%</div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">JavaScript</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%" data-percent="65"></div>
+                            <div class="progress-text">65%</div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">C/C++</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%" data-percent="75"></div>
+                            <div class="progress-text">75%</div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Natural Language Processing</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%" data-percent="65"></div>
+                            <div class="progress-text">65%</div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Frontend (HTML,CSS)</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%" data-percent="80"></div>
+                            <div class="progress-text">75%</div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">PostgreSQL</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%" data-percent="60"></div>
+                            <div class="progress-text">60%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Get In Touch</h3>
+                <div class="section contact-section">
+                    <div class="contact-wrapper">
+                        <div class="contact-info">
+                            <p class="contact-title">Let's Collaborate</p>
+                            <p class="contact-description">Have a project in mind or just want to say hello? Feel free to reach out. I'm always excited to discuss new opportunities and innovations.</p>
+                            <div class="direct-contact">
+                                <p><i class="fas fa-envelope"></i> divija.joshi05@gmail.com</p>
+                            </div>
+                        </div>
+                        <form class="contact-form" id="contact-form" action="mailto:divija.joshi05@gmail.com" method="post" enctype="text/plain">
+                            <div class="form-group">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope input-icon"></i>
+                                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-comment input-icon"></i>
+                                    <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
     <script>
-        var typed = new Typed('#element', {
-            strings: ['Developer ', 'AI Engineer', 'and a Writer.'],
-            typeSpeed: 70, loop: true,
+        const loader = document.getElementById('loader');
+        const percentageText = document.getElementById('percentage');
+        const loadingPage = document.getElementById('loading-page');
+        const portfolioPage = document.getElementById('portfolio-page');
+
+        let percentage = 0;
+
+        const interval = setInterval(() => {
+            percentage += 1;
+            loader.style.backgroundSize = `${percentage}% 100%`;
+            percentageText.textContent = `${percentage}%`;
+
+            if (percentage === 100) {
+                clearInterval(interval);
+                loadingPage.style.display = 'none';
+                portfolioPage.style.display = 'block';
+
+                // Animate progress bars
+                document.querySelectorAll('.progress-bar').forEach(bar => {
+                    const percent = bar.getAttribute('data-percent');
+                    bar.style.width = `${percent}%`;
+                });
+            }
+        }, 20);
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    successMessage.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                    form.reset();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            }).catch(error => {
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'block';
+            });
         });
     </script>
 </body>
-
 </html>

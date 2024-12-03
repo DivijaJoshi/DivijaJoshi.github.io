@@ -10,6 +10,114 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
    <style>
+    .menu-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.menu-icon i {
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.menu-dropdown {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 200px;
+    height: 100vh;
+    background: rgba(37, 117, 252, 0.1);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    border-left: 1px solid rgba(255,255,255,0.2);
+}
+
+.menu-dropdown.open {
+    right: 0;
+}
+
+.menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-item {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.menu-item:hover {
+    color: #2575fc;
+}
+.resume-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #2575fc 0%, #ecec40 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 16px;
+    text-align: center;
+}
+
+.resume-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(37, 117, 252, 0.2);
+}
+
+/* Light Mode Resume Button */
+body.light-mode .resume-btn {
+    background: linear-gradient(45deg, #3498db 0%, #2ecc71 100%);
+    color: #ffffff;
+}
+
+body.light-mode .resume-btn:hover {
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+/* Light Mode Styles */
+body.light-mode .menu-icon {
+    background: rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+body.light-mode .menu-icon i {
+    color: #2c3e50;
+}
+
+body.light-mode .menu-dropdown {
+    background: rgba(52, 152, 219, 0.1);
+    border-left-color: rgba(0,0,0,0.1);
+}
+
+body.light-mode .menu-item {
+    color: #2c3e50;
+}
+
+body.light-mode .menu-item:hover {
+    color: #3498db;
+}
         body, html {
             margin: 0;
             padding: 0;
@@ -533,6 +641,71 @@
             background: rgba(255, 255, 255, 0.8);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+        .research-papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        .research-paper-item {
+            background: rgba(199, 195, 195, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .research-paper-title {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        .research-paper-details {
+            font-size: 18px;
+            color: #d0d0d0;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        .research-paper-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            margin-top: 15px;
+        }
+        .research-paper-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(37, 117, 252, 0.1);
+        }
+        .research-paper-link-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #7f7f7f;
+            opacity: 0;
+            transition: opacity 0.3s ease, color 0.3s ease;
+        }
+        .research-paper-item:hover .research-paper-link-indicator {
+            opacity: 1;
+            color: #2575fc;
+        }
+        .research-paper-item:hover .research-paper-title {
+            color: #2575fc;
+        }
+
+        /* Light Mode Styles for Research Papers */
+        body.light-mode .research-paper-item {
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        body.light-mode .research-paper-title {
+            color: #2c3e50;
+        }
+        body.light-mode .research-paper-details {
+            color: #34495e;
+        }
     </style>
 </head>
 <body>
@@ -552,6 +725,23 @@
             🌙
         </div>
     </div>
+    <div class="menu-icon" id="menu-icon">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <div class="menu-dropdown" id="menu-dropdown">
+        <div class="menu-content">
+            <a href="#about" class="menu-item">About</a>
+            <a href="#projects" class="menu-item">Projects</a>
+            <a href="#research-papers" class="menu-item">Research</a>
+            <a href="#skills" class="menu-item">Skills</a>
+            <a href="#contact" class="menu-item">Contact</a>
+            <a href="Divija Joshi Resume Main.pdf" target="_blank" class="resume-btn">
+                <i class="fas fa-file-download"></i> Resume
+            </a>
+
+        </div>
+    </div>
     <div class="wrapper" id="portfolio-page">
         <div class="portfolio-container">
             <img src="./profile photo3.jpeg" alt="Divija Joshi" class="profile-image">
@@ -565,14 +755,14 @@
                 <a href="Divija Joshi Resume Main.pdf" target="_blank"><i class="fas fa-file-download"></i></a>
             </div>
 
-            <div class="section">
+            <div class="section" id="about">
                 <h3>About Me</h3>
                 <div class="about-content">
                     <p>Hello! I'm Divija Joshi, a passionate Computer Science Engineer specializing in Artificial Intelligence, committed to crafting impactful solutions through technology. With expertise in programming, machine learning, and data analysis, I thrive in collaborative environments where I can tackle complex problems and drive innovation. My goal is to stay at the forefront of emerging technologies, delivering value to organizations while contributing to advancements in AI and beyond.</p>
                 </div>
             </div>
             
-            <div class="section">
+            <div class="section" id="projects">
                 <h3>Projects</h3>
                 <div class="projects-grid">
                     <div class="project-item">
@@ -616,8 +806,25 @@
                     </div>
                 </div>
             </div>
-
-            <div class="section">
+            <div class="section" id="research-papers">
+                <h3>Research Paper</h3>
+                <div class="research-papers-grid">
+                    <div class="research-paper-item">
+                        <a href="https://ijsrem.com/download/machine-learning-based-risk-prediction-of-asthma/" target="_blank" class="research-paper-link">
+                            <h4 class="research-paper-title">Machine Learning-Based Risk Prediction of Asthma</h4>
+                            <p class="research-paper-details">
+                                Published in International Journal of Scientific Research in Engineering and Management (IJSREM)
+                                <br>
+                                Date: November 11, 2024
+                            </p>
+                            <div class="research-paper-link-indicator">
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="skills">
                 <h3>Skills</h3>
                 <div class="skills-grid">
                     <div class="skill-item">
@@ -686,7 +893,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" id="contact">
                 <h3>Get In Touch</h3>
                 <div class="section contact-section">
                     <div class="contact-wrapper">
@@ -697,7 +904,8 @@
                                 <p><i class="fas fa-envelope"></i> divija.joshi05@gmail.com</p>
                             </div>
                         </div>
-                        <form class="contact-form" id="contact-form">
+                        <form class="contact-form" id="contact-form" action="https://formspree.io/f/mqakwrwp" 
+                        method="POST" >
                             <div class="form-group">
                                 <div class="input-wrapper">
                                     <i class="fas fa-user input-icon"></i>
@@ -757,29 +965,42 @@
             }
         }, 20);
         document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Construct email body
-            const emailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:divija.joshi05@gmail.com?subject=Portfolio%20Contact%20Form&body=${encodeURIComponent(emailBody)}`;
-            
-            // Open mail client
-            window.location.href = mailtoLink;
-            
+    event.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // Prepare form data
+    const formData = new FormData(event.target);
+
+    // Submit to Formspree
+    fetch(event.target.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
             // Show success message
             document.getElementById('success-message').style.display = 'block';
             document.getElementById('error-message').style.display = 'none';
-            
+
             // Reset form
             event.target.reset();
-        });
+        } else {
+            // Show error message if submission fails
+            document.getElementById('success-message').style.display = 'none';
+            document.getElementById('error-message').style.display = 'block';
+        }
+    }).catch(error => {
+        // Show error message if there's a network error
+        document.getElementById('success-message').style.display = 'none';
+        document.getElementById('error-message').style.display = 'block';
+    });
+});
         document.addEventListener('DOMContentLoaded', () => {
             const themeToggle = document.getElementById('theme-toggle');
             const themeToggleCircle = document.getElementById('theme-toggle-circle');
@@ -816,6 +1037,36 @@
                 applyTheme(newTheme);
             });
         });
+    // Add this inside your existing DOMContentLoaded event listener
+const menuIcon = document.getElementById('menu-icon');
+const menuDropdown = document.getElementById('menu-dropdown');
+
+menuIcon.addEventListener('click', () => {
+    menuDropdown.classList.toggle('open');
+});
+
+// Add event listeners to menu items to close dropdown when clicked
+document.querySelectorAll('.menu-item').forEach(item => {
+    item.addEventListener('click', () => {
+        menuDropdown.classList.remove('open');
+        
+        // Smooth scroll to section
+        const targetId = item.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// Close menu if clicked outside
+document.addEventListener('click', (event) => {
+    if (!menuIcon.contains(event.target) && 
+        !menuDropdown.contains(event.target) && 
+        menuDropdown.classList.contains('open')) {
+        menuDropdown.classList.remove('open');
+    }
+});
     </script>
 </body>
 </html>
